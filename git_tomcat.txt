@@ -1,0 +1,4 @@
+https://github.com/selenium-saikrishna/maven.git
+
+
+http://www-us.apache.org/dist/tomcat/tomcat-8/v8.5.20/bin/apache-tomcat-8.5.20.zip
