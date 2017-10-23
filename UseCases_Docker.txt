@@ -1,0 +1,68 @@
+docker container run nginx
+
+docker container run -p 80:80 --name webserver -d nginx
+
+docker container ls
+docker container ls -a
+
+
+Use Cases
+1 Run nginx on external port 80 and internal port 80..name it webserver
+2 Run httpd on external port 8080 and internal port 80 name it apachewebserver
+3 Run mysql on externalport 3306 and internal port 3306..pass environment variable
+  MYSQL_RANDOM_PASSWORD=yes
+4 Run ubuntu container and install git in it.Commit the image..run the image
+  with a new name and check if git is still present
+
+
+
+docker run -it --name mycontainer1 --rm ubuntu:latest
+apt-get update
+apt-get install git
+git --version
+exit
+git commit container_id reponame/image_name
+
+5 Push the above image to docker hub
+  Create an account with docker hub
+  docker login
+  docker push our_image_name
+
+6 Install jenkins in an ubuntu container and save it in the local registry
+  docker run -it -d --name ubuntu-jenkins ubuntu
+  sudo wget -q -O - http://pkg.jenkins-ci.org/debian/jenkins-ci.org.key | apt-key add -
+ 
+  echo deb http://pkg.jenkins-ci.org/debian binary/ > /etc/apt/sources.list.d/jenkins.list
+  apt-get update
+  apt-get install jenkins
+  exit
+  docker commit ubuntu-jenkins intelliqit/ubuntu-jenkins
+  docker pull registry
+  docker run -d -p 5000:5000 --name localregistry registry
+  docker tag alpine:latest localhost:5000/alpine:latest
+  docker push localhost:5000/ubuntu-jenkins
+
+
+7 DataVolumes
+  docker run -it -v /data --name container1 busybox
+  cd /data
+  docker restart container1
+  docker attach container1
+  exit
+  docker rm container1
+  docker rm -v    : this will remove the associated volumes
+
+8 Data volume containers
+  docker run -it -v /data --name container1 busybox
+  docker run -it --volumes-from container1 --name container2 busybox
+
+
+  
+
+
+
+
+
+
+
+
