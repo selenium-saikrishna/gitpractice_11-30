@@ -1,0 +1,95 @@
+Build
+=======
+Build an image from the docker file and name it
+docker build -t myapp:1.0
+
+List all images storred locally in docker engine
+docker images
+
+Delete an image from the local image store
+docker rmi myapp:3.4
+
+Ship
+========
+Pull an image from a registry
+docker pull myapp:1.0
+
+Rename a localimage
+docker tag myapp:1.0 yourapp:1.0
+
+Login to a registry
+docker login my.registry.com:8080
+
+Push an image to a registry
+docker push myrepo/myapp:1.0
+
+
+
+Run
+===========
+
+docker run
+            -rm remove the container after it exits
+	    -it connect the container to a terminal
+	    --name web  name the container as web
+	    -p 5000:80 expose port 5000 externally and map to internal port 80
+	    -v ~/dev:/code  create host mapped volume inside the container
+	    alpine:3.4 the image from which container is instaniated
+	    -d  run in detach mode
+            -P publish the ports
+            -e to pass environment variables to container
+	    -a attach to stdin or stdout
+
+To stop a running container
+docker stop containername or id
+docker kill contaiername
+
+To start a stopped container
+docker start containername
+
+To restart a contianer
+docker restart container_name
+docker restart -t 10 container_name
+
+To get into a container already runnning
+docker container exec -it mysql bash
+
+To see the ports of a container
+docker container port container_name
+
+To find networks 
+docker container ls
+
+To inspect a specific network
+docker network inspect network_name
+
+To create new network
+docker network create my_new_network
+
+To connect to a network
+docker network connect network_id container_id
+docker network disconnect network_id container_id
+
+To display logs of a container
+docker logs container_name
+docker logs --tail 100 container_name
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            
+
+
